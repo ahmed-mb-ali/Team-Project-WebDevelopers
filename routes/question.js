@@ -4,9 +4,7 @@ var express = require('express');
 var Question = require('../models/Question');
 var router = express.Router();
 
-/**
- * GET ROUTES
- */
+//Rendering add page
 router.get('/create', function(req, res) {
     var templateData={
         "pageTitle":"Survey Master - Create Question",
@@ -15,7 +13,7 @@ router.get('/create', function(req, res) {
     };
     res.render('pages/add_question',{templateData:templateData});
 });
-
+//editing based on ID
 router.get('/update/:id', function(req, res) {
 
     Question.findOne({_id:req.params.id}, (err, q)=>{
@@ -39,7 +37,7 @@ router.get('/update/:id', function(req, res) {
         res.render('pages/add_question',{templateData:templateData});
     });
 });
-
+//Deleting based on ID
 router.get('/delete/:id', function(req, res) {
 
     Question.findOneAndDelete({
@@ -49,9 +47,7 @@ router.get('/delete/:id', function(req, res) {
     });
 });
 
-/**
- * POST ROUTES
- */
+//Adding Question
 router.post('/create', function(req, res) {
     let question=req.body.question;
     let options=[];
@@ -68,7 +64,7 @@ router.post('/create', function(req, res) {
             res.redirect('/');
     });
 });
-
+//Editing based on ID
 router.post('/update/:id', function(req, res) {
 
     let question=req.body.question;

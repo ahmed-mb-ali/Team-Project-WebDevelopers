@@ -1,4 +1,4 @@
-
+//rendering index page
 var express = require('express');
 var router = express.Router();
 var Question = require('../models/Question');
